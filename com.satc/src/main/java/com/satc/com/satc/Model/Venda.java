@@ -1,17 +1,25 @@
 package com.satc.com.satc.Model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Venda extends EntityId implements OperacaoFinanceira{
 
+    @Column(name = "dt_venda")
     private LocalDate dataVenda;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @Column(name = "forma_pagamento")
     private FormaPagamento formaPagamento;
+    @Column(name = "observacao")
     private String observacao;
 
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
     private List<ItemVenda> itens = new ArrayList<>();
 
 
@@ -54,6 +62,8 @@ public class Venda extends EntityId implements OperacaoFinanceira{
     }
 
     public void addItemVenda(ItemVenda item) {
+
+        item.setVenda(this);
         this.itens.add(item);
     }
 

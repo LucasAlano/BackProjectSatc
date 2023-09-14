@@ -1,16 +1,25 @@
 package com.satc.com.satc.Model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@DiscriminatorValue("produto")
 public class Produto extends ItemVendavel {
 
+    @Column(name = "nome", length = 100, nullable = true)
     private String nome;
-
+    @Column(name = "precoCompra", nullable = true)
     private Double precoCompra;
+    @Column(name = "dataValidade", nullable = true)
     private LocalDate dataValidade;
+    @Column(name = "dataPrazo", nullable = true)
     private LocalDate dataPrazo;
 
+
     /** Enum com Status**/
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
 
 

@@ -1,9 +1,16 @@
 package com.satc.com.satc.Model;
 
-public class ItemVendavel extends EntityId {
-    private String descricao;
-    private Double valorUnitario;
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_item")
+public class ItemVendavel extends EntityId {
+    @Column(name = "descricao", nullable = true)
+    private String descricao;
+    @Column(name = "valorUnitario", nullable = true)
+    private Double valorUnitario;
+    @Column(name = "estocavel", nullable = true)
     private Boolean estocavel;
 
     /**Getters**/

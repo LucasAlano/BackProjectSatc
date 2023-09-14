@@ -1,11 +1,26 @@
 package com.satc.com.satc.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class ItemLocacao extends EntityId{
 
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
     private Produto produto;
+    @Column(name = "vlr_unitario")
     private Double valorUnitario;
+    @Column(name = "quantidade")
     private Double quantidade;
+    @Column(name = "desconto")
     private Double desconto;
+
+    @ManyToOne
+    @JoinColumn(name = "locacao_id")
+    private Locacao locacao;
 
     public Produto getProduto() {
         return produto;
@@ -23,6 +38,10 @@ public class ItemLocacao extends EntityId{
         return desconto;
     }
 
+    public Locacao getLocacao() {
+        return locacao;
+    }
+
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
@@ -37,6 +56,10 @@ public class ItemLocacao extends EntityId{
 
     public void setDesconto(Double desconto) {
         this.desconto = desconto;
+    }
+
+    public void setLocacao(Locacao locacao) {
+        this.locacao = locacao;
     }
 
     @Override
@@ -61,4 +84,6 @@ public class ItemLocacao extends EntityId{
         this.quantidade = quantidade;
         this.desconto = desconto;
     }
+
+
 }

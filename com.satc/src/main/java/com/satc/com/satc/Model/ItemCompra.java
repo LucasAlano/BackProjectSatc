@@ -1,10 +1,27 @@
 package com.satc.com.satc.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class ItemCompra extends EntityId{
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
     private Produto produto;
+    @Column(name = "valor_unitario")
     private Double  valorUnitario;
+    @Column(name = "quantidade")
     private Double  quantidade;
+    @Column(name = "desconto")
     private Double  desconto;
+
+    @ManyToOne
+    @JoinColumn(name = "compra_id")
+    private Compra compra;
+
+
 
     /** Getters **/
 
@@ -24,6 +41,12 @@ public class ItemCompra extends EntityId{
         return desconto;
     }
 
+    public Compra getCompra() {
+        return compra;
+    }
+
+
+
     /** Setters **/
     public void setProduto(Produto produto) {
         this.produto = produto;
@@ -40,5 +63,7 @@ public class ItemCompra extends EntityId{
         this.desconto = desconto;
     }
 
-
+    public void setCompra(Compra compra) {
+        this.compra = compra;
+    }
 }
